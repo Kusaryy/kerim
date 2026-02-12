@@ -1,100 +1,494 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cyber Security Flyer - mooveteq</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    body {
-      padding-top: 40px;
-      font-family: Arial, sans-serif;
-    }
-    .hero {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-    .hero h1 {
-      font-size: 2.8rem;
-      font-weight: bold;
-    }
-    .stat {
-      font-size: 1.6rem;
-      font-weight: 600;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Security Flyer - mooveteq</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .flyer-container {
+            background: white;
+            max-width: 1200px;
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #0f2747 0%, #1e4976 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 174, 239, 0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .company-name {
+            font-size: 2.5em;
+            font-weight: 700;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            color: #00aeef;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+
+        .header p {
+            font-size: 1.3em;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+
+        .content {
+            padding: 50px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section h2 {
+            color: #0f2747;
+            font-size: 2em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #00aeef;
+            display: inline-block;
+        }
+
+        .threats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .threat-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-left: 4px solid #dc3545;
+            padding: 25px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .threat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .threat-card h3 {
+            color: #dc3545;
+            font-size: 1.4em;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .threat-icon {
+            font-size: 1.5em;
+        }
+
+        .threat-card p {
+            color: #495057;
+            line-height: 1.6;
+            font-size: 1em;
+        }
+
+        .best-practices {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .practice-card {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-left: 4px solid #28a745;
+            padding: 25px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .practice-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .practice-card h3 {
+            color: #28a745;
+            font-size: 1.4em;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .practice-icon {
+            font-size: 1.5em;
+        }
+
+        .practice-card p {
+            color: #2d5016;
+            line-height: 1.6;
+            font-size: 1em;
+        }
+
+        .stats-section {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            padding: 40px;
+            border-radius: 12px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .stat-item {
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 3em;
+            font-weight: 800;
+            color: #e67e22;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.1em;
+            color: #6c4a00;
+            font-weight: 600;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #0f2747 0%, #1e4976 100%);
+            color: white;
+            padding: 50px;
+            text-align: center;
+            border-radius: 12px;
+            margin-top: 40px;
+        }
+
+        .cta-section h2 {
+            color: white;
+            border-bottom: 3px solid #00aeef;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        .cta-section p {
+            font-size: 1.2em;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #00aeef;
+            color: white;
+            padding: 18px 45px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 174, 239, 0.4);
+        }
+
+        .cta-button:hover {
+            background: #008fc7;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 174, 239, 0.6);
+        }
+
+        .footer {
+            background: #0f2747;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            font-size: 0.95em;
+        }
+
+        .footer p {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .company-name {
+                font-size: 1.8em;
+            }
+
+            .content {
+                padding: 30px;
+            }
+
+            .section h2 {
+                font-size: 1.6em;
+            }
+
+            .threats-grid,
+            .best-practices {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-number {
+                font-size: 2.5em;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .flyer-container {
+                box-shadow: none;
+                max-width: 100%;
+            }
+
+            .cta-button {
+                background: #0f2747 !important;
+                color: white !important;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div class="flyer-container">
+        <div class="header">
+            <div class="header-content">
+                <div class="company-name">mooveteq</div>
+                <h1>🔒 CYBER SECURITY</h1>
+                <p>Schützen Sie Ihr Unternehmen vor digitalen Bedrohungen</p>
+            </div>
+        </div>
 
-<div class="container">
+        <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/926aa0a1-9c14-44b1-8941-aeb5e037694d.png" alt="Cyber Security" class="hero-image">
 
-  <!-- Hero -->
-  <section class="hero">
-    <h1>CYBER SECURITY</h1>
-    <p class="lead">Schützen Sie Ihr Unternehmen vor digitalen Bedrohungen</p>
-  </section>
+        <div class="content">
+            <div class="section">
+                <h2>⚠️ Aktuelle Bedrohungen 2026</h2>
+                <div class="threats-grid">
+                    <div class="threat-card">
+                        <h3><span class="threat-icon">🤖</span>KI-gestützte Angriffe</h3>
+                        <p>Cyberkriminelle nutzen künstliche Intelligenz, um Angriffe zu automatisieren und zu skalieren. AI-Agents können Schwachstellen schneller identifizieren und Social Engineering auf massiver Ebene durchführen.</p>
+                    </div>
 
-  <!-- Threats -->
-  <section>
-    <h2>⚠️ Aktuelle Bedrohungen 2026</h2>
-    <ul class="list-group list-group-flush mb-4">
-      <li class="list-group-item">💻 KI-gestützte Angriffe</li>
-      <li class="list-group-item">🔐 Ransomware</li>
-      <li class="list-group-item">📧 Phishing & Social Engineering</li>
-      <li class="list-group-item">🔗 Supply Chain Attacken</li>
-      <li class="list-group-item">📡 IoT-Schwachstellen</li>
-      <li class="list-group-item">⚙️ Prompt Injection</li>
-    </ul>
-  </section>
+                    <div class="threat-card">
+                        <h3><span class="threat-icon">💰</span>Ransomware</h3>
+                        <p>Erpressung durch Datenverschlüsselung bleibt die finanziell verheerendste Cybercrime-Kategorie. Angreifer zielen auf Drittanbieter und nutzen Zero-Day-Schwachstellen.</p>
+                    </div>
 
-  <!-- Stats -->
-  <section class="mb-4">
-    <h2>📊 Cyber Security in Zahlen</h2>
-    <div class="row text-center">
-      <div class="col-md-4">
-        <div class="stat">85%</div>
-        <div>Sicherheitsvorfälle durch menschliches Versagen</div>
-      </div>
-      <div class="col-md-4">
-        <div class="stat">24/7</div>
-        <div>Ständige Bedrohungslage</div>
-      </div>
-      <div class="col-md-4">
-        <div class="stat">30%</div>
-        <div>Jährliche Zunahme von Cyberangriffen</div>
-      </div>
+                    <div class="threat-card">
+                        <h3><span class="threat-icon">🎣</span>Phishing &amp; Social Engineering</h3>
+                        <p>Über 85% aller Sicherheitsvorfälle entstehen durch menschliche Fehler. Gefälschte E-Mails und manipulative Taktiken bleiben die häufigste Angriffsmethode.</p>
+                    </div>
+
+                    <div class="threat-card">
+                        <h3><span class="threat-icon">🔗</span>Supply Chain Attacken</h3>
+                        <p>Angriffe auf Lieferketten und Drittanbieter gefährden gesamte Unternehmensnetzwerke. Ein kompromittierter Partner kann zum Einfallstor werden.</p>
+                    </div>
+
+                    <div class="threat-card">
+                        <h3><span class="threat-icon">📱</span>IoT-Schwachstellen</h3>
+                        <p>Mit der Verbreitung von IoT-Geräten, Edge Computing und 5G/6G wächst die Angriffsfläche exponentiell. Vernetzte Geräte sind oft unzureichend geschützt.</p>
+                    </div>
+
+                    <div class="threat-card">
+                        <h3><span class="threat-icon">💉</span>Prompt Injection</h3>
+                        <p>Eine wachsende Bedrohung für Unternehmen-KI-Systeme. Angreifer manipulieren KI, um Sicherheitsprotokolle zu umgehen und versteckte Befehle auszuführen.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats-section">
+                <h2 style="color: #e67e22; border-color: #e67e22;">📊 Cyber Security in Zahlen</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">85%</div>
+                        <div class="stat-label">Sicherheitsvorfälle durch menschliches Versagen</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Ständige Bedrohungslage</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">30%</div>
+                        <div class="stat-label">Jährliche Zunahme von Cyberangriffen</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>✅ Best Practices für Ihr Unternehmen</h2>
+                <div class="best-practices">
+                    <div class="practice-card">
+                        <h3><span class="practice-icon">🔐</span>Multi-Faktor-Authentifizierung</h3>
+                        <p>Implementieren Sie MFA für alle Benutzerkonten. Zusätzliche Authentifizierungsebenen schützen vor unbefugtem Zugriff, selbst wenn Passwörter kompromittiert werden.</p>
+                    </div>
+
+                    <div class="practice-card">
+                        <h3><span class="practice-icon">🎓</span>Mitarbeiter-Schulungen</h3>
+                        <p>Regelmäßige Sicherheitstrainings sind essentiell. Sensibilisieren Sie Ihr Team für Phishing-Mails, Social Engineering und sichere Passwortnutzung.</p>
+                    </div>
+
+                    <div class="practice-card">
+                        <h3><span class="practice-icon">🔄</span>Regelmäßige Updates</h3>
+                        <p>Halten Sie alle Systeme, Software und Anwendungen aktuell. Sicherheitspatches schließen bekannte Schwachstellen und minimieren Angriffsflächen.</p>
+                    </div>
+
+                    <div class="practice-card">
+                        <h3><span class="practice-icon">🔒</span>Datenverschlüsselung</h3>
+                        <p>Verschlüsseln Sie sensible Daten mit AES-256 (Daten im Ruhezustand) und TLS-Protokollen (Daten in Übertragung). Geschützte Daten bleiben selbst bei Diebstahl unlesbar.</p>
+                    </div>
+
+                    <div class="practice-card">
+                        <h3><span class="practice-icon">🚫</span>Zero Trust Architektur</h3>
+                        <p>Vertrauen Sie niemandem standardmäßig. Implementieren Sie granulare Zugriffskontrollen und überprüfen Sie Berechtigungen regelmäßig nach dem Prinzip der minimalen Rechte.</p>
+                    </div>
+
+                    <div class="practice-card">
+                        <h3><span class="practice-icon">💾</span>Backup-Strategie</h3>
+                        <p>Erstellen Sie regelmäßige Backups kritischer Daten. Die 3-2-1-Regel: 3 Kopien, 2 verschiedene Medien, 1 Offsite-Kopie schützt vor Ransomware und Datenverlust.</p>
+                    </div>
+
+                    <div class="practice-card">
+                        <h3><span class="practice-icon">🔍</span>Monitoring &amp; Logging</h3>
+                        <p>Überwachen Sie Ihre Systeme kontinuierlich. Detaillierte Audit-Logs und Echtzeit-Überwachung ermöglichen schnelle Erkennung und Reaktion auf Sicherheitsvorfälle.</p>
+                    </div>
+
+                    <div class="practice-card">
+                        <h3><span class="practice-icon">🛡️</span>Firewall &amp; Intrusion Detection</h3>
+                        <p>Setzen Sie moderne Firewalls und Intrusion Detection Systems ein. Mehrschichtige Sicherheit (Defense in Depth) bietet umfassenden Schutz vor Bedrohungen.</p>
+                    </div>
+
+                    <div class="practice-card">
+                        <h3><span class="practice-icon">📋</span>Incident Response Plan</h3>
+                        <p>Entwickeln Sie einen klaren Notfallplan für Sicherheitsvorfälle. Definierte Prozesse und Zuständigkeiten ermöglichen schnelle und koordinierte Reaktionen.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cta-section">
+                <h2>🛡️ Schützen Sie Ihr Unternehmen jetzt!</h2>
+                <p>Cyber Security ist kein Luxus, sondern eine Notwendigkeit. mooveteq unterstützt Sie dabei, Ihre digitale Infrastruktur gegen moderne Bedrohungen abzusichern.</p>
+                <p><strong>Warten Sie nicht, bis es zu spät ist. Handeln Sie proaktiv!</strong></p>
+                <a href="#" class="cta-button" onclick="alert('Kontaktieren Sie uns für ein unverbindliches Beratungsgespräch!'); return false;">Jetzt beraten lassen</a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2026 mooveteq | Cyber Security Solutions</p>
+            <p>Schützen Sie Ihr wertvollstes Gut: Ihre Daten</p>
+        </div>
     </div>
-  </section>
 
-  <!-- Best Practices -->
-  <section>
-    <h2>✅ Best Practices für Ihr Unternehmen</h2>
-    <ul class="list-group mb-4">
-      <li class="list-group-item">Multi-Faktor-Authentifizierung</li>
-      <li class="list-group-item">Mitarbeiter-Schulungen</li>
-      <li class="list-group-item">Regelmäßige Updates</li>
-      <li class="list-group-item">Datenverschlüsselung</li>
-      <li class="list-group-item">Zero Trust Architektur</li>
-      <li class="list-group-item">Backup-Strategie</li>
-      <li class="list-group-item">Monitoring & Logging</li>
-      <li class="list-group-item">Firewall & Intrusion Detection</li>
-      <li class="list-group-item">Incident Response Plan</li>
-    </ul>
-  </section>
+    <script>
+        // Print functionality
+        document.addEventListener('keydown', function(e) {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+                e.preventDefault();
+                window.print();
+            }
+        });
 
-  <!-- CTA -->
-  <section class="text-center mb-4">
-    <p>Cyber Security ist kein Luxus, sondern eine Notwendigkeit. mooveteq unterstützt Sie dabei, Ihre digitale Infrastruktur zu schützen.</p>
-    <a href="#contact" class="btn btn-primary btn-lg">Jetzt beraten lassen</a>
-  </section>
+        // Smooth scroll for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
 
-  <!-- Footer -->
-  <footer class="text-center text-muted small">
-    ©️ 2026 mooveteq | Cyber Security Solutions
-  </footer>
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
 
-</div>
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        document.querySelectorAll('.threat-card, .practice-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
 </body>
 </html>
